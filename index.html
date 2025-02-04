@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Joseph Teka" content="Daily Quote" />
+    <title>Qoute of the day</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #491633;
+      }
+      .Quote {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+      .qouteBox {
+        width: 500px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 15px 12px black;
+      }
+      .qouteBox h2 {
+        font-size: 24px;
+        margin-bottom: 40px;
+        position: relative;
+      }
+      .qouteBox h2::after {
+        content: "";
+        width: 75px;
+        height: 3px;
+        border-radius: 3px;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .qouteBox blockquote {
+        font-size: 26px;
+        min-height: 110px;
+      }
+      .qouteBox blockquote::before,
+      .qouteBox blockquote::after {
+        content: '"';
+      }
+      .qouteBox span {
+        display: block;
+        margin-bottom: 10px;
+        float: right;
+        position: relative;
+      }
+      .qouteBox span::before {
+        content: "";
+        width: 20px;
+        height: 2px;
+        background: #491633;
+        position: absolute;
+        left: -30px;
+      }
+      .qouteBox div {
+        width: 100%;
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+      }
+      .qouteBox button {
+        background: darkblue;
+        color: #fff;
+        border-radius: 25px;
+        border: 1px solid black;
+        width: 150px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        cursor: pointer;
+      }
+      .qouteBox button:hover {
+        background: #fff;
+        color: #000;
+      }
+      p {
+        background: white;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      To get this app working: sarch for "https://api.quotable.io/random" then
+      click advanced then continue.
+    </p>
+    <p>now back and it should b working. <b>Note: it's safe website</b></p>
+    <div class="Quote">
+      <div class="qouteBox">
+        <h2>Daily Qoute Genarator</h2>
+        <blockquote id="qoute">Loading........</blockquote>
+        <span id="author">loading............</span>
+        <div>
+          <button
+            onclick="
+      getQoute(apiUrl)"
+          >
+            Genarate
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const qoute = document.getElementById("qoute");
+      const author = document.getElementById("author");
+      const apiUrl = "https://api.quotable.io/random";
+      async function getQoute(url) {
+        const response = await fetch(url);
+        var data = await response.json();
+        qoute.innerHTML = data.content;
+        author.innerHTML = data.author;
+      }
+    </script>
+  </body>
+</html>
